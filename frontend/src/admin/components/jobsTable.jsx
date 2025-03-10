@@ -13,11 +13,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { JOB_API_END_POINT } from "@/utils/constants";
 import { Separator } from "@radix-ui/react-select";
+import axios from "axios";
 import { Edit2, Eye, MoreHorizontal, Trash } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const JobsTable = () => {
   // const { companies, searchCompanyByText } = useSelector(
@@ -46,6 +49,16 @@ const JobsTable = () => {
 
   const deleteJob = (jobId) => {
     console.log(jobId);
+    try {
+      const deleteJob = axios.delete(`${JOB_API_END_POINT}/delete/${jobId}`);
+      if (deleteJob) {
+        toast.success("Job deleted successfully");
+      }
+
+    } catch (error) {
+      console.log(error);
+      toast.error("Fails to delete job");
+    }
   };
 
   return (
