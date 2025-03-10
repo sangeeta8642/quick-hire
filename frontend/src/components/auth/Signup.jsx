@@ -18,7 +18,7 @@ const Signup = () => {
     email: "",
     phoneNumber: "",
     password: "",
-    role: "",
+    role: "student",
     file: "",
   });
 
@@ -58,7 +58,7 @@ const Signup = () => {
         toast.success(res.data.message);
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error.response.data.message);
     } finally {
       dispatch(setLoading(false));
     }
@@ -80,8 +80,9 @@ const Signup = () => {
           className="w-1/2 border border-gray-200 rounded-md p-4 my-10 "
         >
           <h1 className="font-bold text-xl mb-5">Sign Up</h1>
+          <p className="text-sm font-medium text-red-600">Fields marked with * are required</p>
           <div className="my-2">
-            <Label>Full name</Label>
+            <Label>Full name <span className="text-red-600">*</span></Label>
             <Input
               type="text"
               placeholder="John"
@@ -91,7 +92,7 @@ const Signup = () => {
             />
           </div>
           <div className="my-2">
-            <Label>Email</Label>
+            <Label>Email <span className="text-red-600">*</span></Label>
             <Input
               type="email"
               placeholder="John@gmail.com"
@@ -101,7 +102,7 @@ const Signup = () => {
             />
           </div>
           <div className="my-2">
-            <Label>Phone Number</Label>
+            <Label>Phone Number <span className="text-red-600">*</span></Label>
             <Input
               type="text"
               placeholder="+91"
@@ -111,7 +112,7 @@ const Signup = () => {
             />
           </div>
           <div className="my-2">
-            <Label>Password</Label>
+            <Label>Password <span className="text-red-600">*</span></Label>
             <Input
               type="password"
               placeholder="John@123"
@@ -120,8 +121,9 @@ const Signup = () => {
               name="password"
             />
           </div>
-          <div className="flex items-center justify-between">
-            <RadioGroup className="flex items-center gap-4 my-5">
+          <div className="flex flex-col  justify-between">
+          <Label>Role <span className="text-red-600">*</span></Label>
+            <RadioGroup className="flex items-center gap-4">
               <div className="flex items-center space-x-2">
                 <Input
                   id="r1"
@@ -148,7 +150,7 @@ const Signup = () => {
               </div>
             </RadioGroup>
             <div className="flex items-center gap-2">
-              <Label>Profile</Label>
+              <Label>Profile<span className="text-red-600">*</span></Label>
               <Input
                 accept="image/*"
                 type="file"

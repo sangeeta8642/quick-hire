@@ -26,7 +26,7 @@ const Browse = () => {
         </h1>
         <div className="grid grid-cols-3 gap-4">
           {jobs.length > 0 ? (
-            jobs.map((job) => <Job job={job} />)
+            jobs.map((job) => <Job key={job?._id} job={job} />)
           ) : (
             <span>No jobs found</span>
           )}

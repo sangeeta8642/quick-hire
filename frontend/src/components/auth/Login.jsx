@@ -16,7 +16,7 @@ const Login = () => {
   const [input, setInput] = useState({
     email: "",
     password: "",
-    role: "",
+    role: "student",
   });
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -36,13 +36,13 @@ const Login = () => {
         },
         withCredentials: true,
       });
-     if (res.data.success) {
+      if (res.data.success) {
         dispatch(setUser(res.data.user));
         nav("/");
         toast.success(res.data.message);
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error.response.data.message);
     } finally {
       dispatch(setLoading(false));
     }

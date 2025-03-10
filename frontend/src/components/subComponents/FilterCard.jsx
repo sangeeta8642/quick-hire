@@ -29,7 +29,7 @@ const FilterCard = () => {
   };
 
   useEffect(() => {
-   dispatch(setSearchedQuery(selectedValue));
+    dispatch(setSearchedQuery(selectedValue));
   }, [selectedValue]);
 
   const getSalaryRangeInLPA = (salary) => {
@@ -70,7 +70,7 @@ const FilterCard = () => {
             Locations.map((job) => {
               // const itemId = `id${index}-${idx}`;
               return (
-                <div className="flex items-center space-x-2 my-2">
+                <div className="flex items-center space-x-2 my-2" key={job?._id}>
                   <RadioGroupItem value={job} id={job} />
                   <Label htmlFor={job}>{job}</Label>
                 </div>
@@ -86,7 +86,7 @@ const FilterCard = () => {
             Indutries.map((job) => {
               // const itemId = `id${index}-${idx}`;
               return (
-                <div className="flex items-center space-x-2 my-2">
+                <div className="flex items-center space-x-2 my-2" key={job?._id}>
                   <RadioGroupItem value={job} id={job} />
                   <Label htmlFor={job}>{job}</Label>
                 </div>
@@ -102,7 +102,7 @@ const FilterCard = () => {
             SalaryRanges.map((job) => {
               // const itemId = `id${index}-${idx}`;
               return (
-                <div className="flex items-center space-x-2 my-2">
+                <div className="flex items-center space-x-2 my-2" key={job?._id}>
                   <RadioGroupItem value={job} id={job} />
                   <Label htmlFor={job}>{job}</Label>
                 </div>
